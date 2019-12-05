@@ -4,15 +4,15 @@ public class Jogo {
     String criatura;
     String arma;
     boolean venceu;
-    Anjo anjo;
-    Demonios demonios;
-    Monstros monstros;
+    Anjo anjo = new Anjo();
+    Demonios demonios = new Demonios();
+    Monstros monstros = new Monstros();
     public void jogar(){
         try{
         String criatura = getCriatura();
         String arma = getArma();
-        boolean venceu = batalha(criatura,arma);
         System.out.println("criatura: "+criatura+" X "+" Arma: "+arma);
+        boolean venceu = batalha();
         System.out.print("Resutado = voce ");
         if(venceu){
             System.out.println("Venceu :}");
@@ -23,7 +23,7 @@ public class Jogo {
             System.out.println("erro no jogo");
         }
     }
-    public boolean batalha(String criatura, String arma){
+    public boolean batalha(){
     try{
         if(criatura.equals("Anjo")){
             for(int i = 0; i<anjo.mortoPor.size();i++){
@@ -56,25 +56,23 @@ public class Jogo {
     }
 //Ramdomiza uma criatura
     public String getCriatura(){
-        String nome = "";
         try{
         Random rd = new Random();
         int n = rd.nextInt(2);
         if(n == 0){
-            nome = anjo.nome;
+            criatura = "Anjo";
         }
         if(n == 1){
-            nome = demonios.nome;
+            criatura = "Demonios";
         }
         if(n == 2){
-            nome = monstros.nome;
+            criatura = "Monstros";
         }        
-        criatura = nome;
         }catch(Exception e){
             System.out.println("erro ao escolher criatura");
         }
-        System.out.println(nome);
-        return nome;
+        System.out.println(criatura);
+        return criatura;
     }
     public String getArma(){
         String nome = "";
